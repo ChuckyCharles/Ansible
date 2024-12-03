@@ -1,9 +1,14 @@
 ---
--hosts: all
+- hosts: all
+  become: true
 
-become: true
-tasks:
- -name :update apt packages
- apt:
- upgrade: yes
- update cache: yes
+  tasks:
+    - name: Update apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
